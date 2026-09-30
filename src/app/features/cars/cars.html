@@ -1,0 +1,35 @@
+<div class="max-w-2xl mx-auto p-6 space-y-6">
+  
+  <!-- Action Button Section -->
+  <div class="flex justify-center">
+    <button 
+      (click)="LoadPost()"
+      class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors duration-200 ease-in-out cursor-pointer active:scale-95">
+      <!-- Optional: You can put a loading or document icon here -->
+      Load Posts
+    </button>
+  </div>
+
+  <!-- Posts Container Grid -->
+  <div class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+    @for (post of Post; track post.id) {
+      <div class="p-5 bg-white rounded-xl border border-gray-100 shadow-xs hover:shadow-md transition-shadow duration-200 ease-in-out flex flex-col justify-between">
+        <h3 class="text-lg font-semibold text-gray-800 tracking-tight leading-snug">
+          {{ post.title }}
+        </h3>
+        
+        <!-- Optional: Placeholder metadata just to make the card look complete -->
+        <div class="mt-4 flex items-center justify-between text-xs text-gray-400">
+          <span>Post ID: #{{ post.id }}</span>
+          <span class="text-blue-500 font-medium hover:underline cursor-pointer">Read more →</span>
+        </div>
+      </div>
+    } @empty {
+      <!-- Friendly empty state message if Post array is empty -->
+      <div class="col-span-full text-center py-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-200">
+        <p class="text-gray-500 font-medium">No posts loaded yet. Click the button above!</p>
+      </div>
+    }
+  </div>
+
+</div>
